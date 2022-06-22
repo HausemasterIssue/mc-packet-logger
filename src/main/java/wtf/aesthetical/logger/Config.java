@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
 import org.apache.logging.log4j.LogManager;
+import org.lwjgl.input.Keyboard;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,9 +24,10 @@ public class Config {
     public static boolean clientPackets = true;
     public static boolean serverPackets = true;
 
-    private static final Minecraft mc = Minecraft.getMinecraft();
+    public static int bind = Keyboard.KEY_RCONTROL;
+    public static boolean toggled = false;
 
-    public static final Path GAME_DIRECTORY = mc.gameDir.toPath();
+    public static final Path GAME_DIRECTORY = Minecraft.getMinecraft().gameDir.toPath();
     public static final Path CONFIG_FILE = GAME_DIRECTORY.resolve("packet_logger_config.json");
 
     public static void loadConfig() {
@@ -46,7 +48,6 @@ public class Config {
 
         if (json.has("serverPackets")) {
             serverPackets = json.get("serverPackets").getAsBoolean();
-            System.out.println(serverPackets);
         }
 
         if (json.has("allowedClientPackets")) {
@@ -69,6 +70,10 @@ public class Config {
             }
         }
 
+        if (json.has("bind")) {
+            bind = json.get("bind").getAsInt();
+        }
+
         LogManager.getLogger("Config").info("Loaded config.");
     }
 
@@ -87,6 +92,7 @@ public class Config {
         jsonObject.addProperty("serverPackets", true);
         jsonObject.add("allowedClientPackets", new JsonArray());
         jsonObject.add("allowedServerPackets", new JsonArray());
+        jsonObject.addProperty("bind", Keyboard.KEY_RCONTROL);
 
         return jsonObject;
     }

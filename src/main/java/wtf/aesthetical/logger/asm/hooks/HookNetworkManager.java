@@ -10,6 +10,10 @@ import java.util.Map.Entry;
 
 public class HookNetworkManager {
     public static void logPacket(Packet<?> packet, PacketType packetType) {
+        if (!Config.toggled) {
+            return;
+        }
+
         String packetName = packet.getClass().getSimpleName();
         if (packetType.equals(PacketType.CLIENT)) {
             if (!Config.clientPackets) {
