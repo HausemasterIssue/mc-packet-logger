@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://files.minecraftforge.net/maven' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3.4'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = '1.0.0'
+group = 'wtf.aesthetical.logger'
+archivesBaseName = 'packet_logger'
+
+sourceCompatibility = targetCompatibility = '1.8'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+    options.encoding 'UTF-8'
+}
+
+minecraft {
+    version = '1.12.2-14.23.5.2847'
+    runDir = 'run'
+    mappings = 'stable_39'
+    makeObfSourceJar = false
+
+    clientJvmArgs += '-Dfml.coreMods.load=wtf.aesthetical.logger.asm.LoadingPlugin'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+//processResources {
+//    inputs.property 'version', project.version
+//
+//    from(sourceSets.main.resources.srcDirs) {
+//        include 'mcmod.info'
+//        // Replace version.
+//        expand 'version': project.version
+//    }
+//
+//    from(sourceSets.main.resources.srcDirs) {
+//        exclude 'mcmod.info'
+//    }
+//}
+
+jar {
+    manifest.attributes(
+            'FMLCorePlugin': 'wtf.aesthetical.logger.asm.LoadingPlugin',
+            'ForceLoadAsMod': 'true'
+    )
+}

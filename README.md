@@ -19,3 +19,7 @@ If the first reason is why you're using this, I do not take liability for any lo
 Don't want to do that? Open the releases tab and download the pre-compiled jar.
 
 This does require forge and Java 8. Gradle should automatically download for you. If not, open it in IntelliJ or download Gradle yourself.
+
+## Credits
+
+- Seppuku, while I wrote the "Mixins" myself, I needed help with the custom transformers and what not, so that's where I got that from

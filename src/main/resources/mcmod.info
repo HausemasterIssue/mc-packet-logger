@@ -1,0 +1,16 @@
+[
+{
+  "modid": "packet_logger",
+  "name": "PacketLogger",
+  "description": "Logs packet data",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/Sxmurai/mc-packet-logger",
+  "updateUrl": "https://github.com/Sxmurai/mc-packet-logger",
+  "authorList": ["aesthetical"],
+  "credits": "Seppuku",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
